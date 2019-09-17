@@ -18,7 +18,7 @@ public class VexeApplication {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api").allowedOrigins("*");
+                registry.addMapping("/**");
             }
         };
     }
