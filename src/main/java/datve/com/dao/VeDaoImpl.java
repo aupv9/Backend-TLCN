@@ -42,7 +42,7 @@ public class VeDaoImpl implements VeService {
         }catch (MongoException e){
            return false;
         }
-
+        return false;
     }
 
     @Override
