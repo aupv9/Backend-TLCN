@@ -77,9 +77,15 @@ public class XeController {
 
             return new ResponseEntity<List<Xe>>(listXe, headers, HttpStatus.FOUND);
         }
-        @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-        @ResponseBody
-        public String getHeroku() {
-            return "Hello";
+        @RequestMapping(value = "/api", method = RequestMethod.GET, produces = "application/json")
+        public ResponseEntity<List<Xe>> getS() {
+            HttpHeaders headers = new HttpHeaders();
+            List<Xe> listXe = xeService.getS();
+            if (listXe == null) {
+                return new ResponseEntity<List<Xe>>(HttpStatus.NOT_FOUND);
+            }
+            headers.add("Numbers", String.valueOf(listXe.size()));
+
+            return new ResponseEntity<List<Xe>>(listXe, headers, HttpStatus.OK);
         }
 }
