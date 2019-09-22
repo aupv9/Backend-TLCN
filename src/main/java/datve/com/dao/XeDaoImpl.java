@@ -27,10 +27,7 @@ public class XeDaoImpl implements XeDao {
         /*
         * Tìm vé xe thông qua nơi đi qua và ngày đi
         * */
-        MongoCursor<Document> cursor = coll.find(and(
-                in("tinhdiqua",start),
-                in("tinhdiqua",end),
-                eq("ngaydi",date))).iterator();
+        MongoCursor<Document> cursor = coll.find(and(in("tinhdiqua",start), in("tinhdiqua",end), eq("ngaydi",date),eq("noiden",end))).iterator();
         List<Xe> list=new ArrayList<Xe>();
         /*
         * Set dữ liệu search được vào mảng xe
@@ -108,11 +105,12 @@ public class XeDaoImpl implements XeDao {
         return false;
     }
 
-    public List<Xe> getS(){
+    public List<Xe> getXes(){
         /*
          * Tìm vé xe thông qua nơi đi qua và ngày đi
          * */
-        MongoCursor<Document> cursor = coll.find().iterator();
+        MongoCursor<Document> cursor = coll.find()
+                .iterator();
         List<Xe> list=new ArrayList<Xe>();
         /*
          * Set dữ liệu search được vào mảng xe
@@ -123,6 +121,7 @@ public class XeDaoImpl implements XeDao {
             xe.set_id(Integer.parseInt(doc.get("_id").toString()));
             xe.setLoaixe(doc.get("loaixe").toString());
             xe.setNhaxe(doc.get("nhaxe").toString());
+            xe.setGiodi(Integer.parseInt(doc.get("giodi").toString()));
             xe.setLoaidi(doc.get("loaidi").toString());
             xe.setChuyendi(doc.get("chuyendi").toString());
             xe.setDanhgia(Integer.parseInt(doc.get("danhgia").toString()));
