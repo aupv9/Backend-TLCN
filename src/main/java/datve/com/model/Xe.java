@@ -1,7 +1,5 @@
 package datve.com.model;
 
-
-
 import java.util.List;
 
 public class Xe {
@@ -9,7 +7,7 @@ public class Xe {
     private int _id;
     private String loaixe;
     private String nhaxe;
-    private int giodi;
+    private String giodi;
     public int[] getTinhdiqua() {
         return tinhdiqua;
     }
@@ -18,11 +16,11 @@ public class Xe {
         this.tinhdiqua = tinhdiqua;
     }
 
-    public int getGiodi() {
+    public String getGiodi() {
         return giodi;
     }
 
-    public void setGiodi(int giodi) {
+    public void setGiodi(String giodi) {
         this.giodi = giodi;
     }
 

@@ -18,8 +18,6 @@ public class Ve {
         private boolean huy;
         private String ngaydat;
 
-
-
     public String get_id() {
             return _id;
         }

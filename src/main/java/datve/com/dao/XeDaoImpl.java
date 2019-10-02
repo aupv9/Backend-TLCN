@@ -27,7 +27,7 @@ public class XeDaoImpl implements XeDao {
         /*
         * Tìm vé xe thông qua nơi đi qua và ngày đi
         * */
-        MongoCursor<Document> cursor = coll.find(and(in("tinhdiqua",start), in("tinhdiqua",end), eq("ngaydi",date),eq("noiden",end))).iterator();
+        MongoCursor<Document> cursor = coll.find(and(in("tinhdiqua",start), in("tinhdiqua",end), eq("ngaydi",date))).iterator();
         List<Xe> list=new ArrayList<Xe>();
         /*
         * Set dữ liệu search được vào mảng xe
