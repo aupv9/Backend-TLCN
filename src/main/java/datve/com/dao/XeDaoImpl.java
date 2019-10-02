@@ -38,7 +38,7 @@ public class XeDaoImpl implements XeDao {
             xe.set_id(Integer.parseInt(doc.get("_id").toString()));
             xe.setLoaixe(doc.get("loaixe").toString());
             xe.setNhaxe(doc.get("nhaxe").toString());
-            xe.setGiodi(Integer.parseInt(doc.get("giodi").toString()));
+            xe.setGiodi(doc.get("giodi").toString());
             xe.setLoaidi(doc.get("loaidi").toString());
             xe.setChuyendi(doc.get("chuyendi").toString());
             xe.setDanhgia(Integer.parseInt(doc.get("danhgia").toString()));
@@ -121,7 +121,7 @@ public class XeDaoImpl implements XeDao {
             xe.set_id(Integer.parseInt(doc.get("_id").toString()));
             xe.setLoaixe(doc.get("loaixe").toString());
             xe.setNhaxe(doc.get("nhaxe").toString());
-            xe.setGiodi(Integer.parseInt(doc.get("giodi").toString()));
+            xe.setGiodi(doc.get("giodi").toString());
             xe.setLoaidi(doc.get("loaidi").toString());
             xe.setChuyendi(doc.get("chuyendi").toString());
             xe.setDanhgia(Integer.parseInt(doc.get("danhgia").toString()));
