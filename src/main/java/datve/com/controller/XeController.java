@@ -25,7 +25,7 @@ public class XeController {
         * @param end mã nơi đến
         * @param date ngày đi
         */
-        @RequestMapping(value = "/api/Cars/start={start}&end={end}&date={date}", method = RequestMethod.GET, produces = "application/json")
+        @RequestMapping(value = "/api/Cars/start={start}&end={end}&date={date}", method = RequestMethod.POST, produces = "application/json")
         public ResponseEntity<List<Xe>> getXes(@PathVariable int start, @PathVariable int end, @PathVariable String date) {
             HttpHeaders headers = new HttpHeaders();
             List<Xe> listXe = xeService.searchXe(start, end, date);
@@ -64,19 +64,19 @@ public class XeController {
         }
 
         /**/
-
-        @RequestMapping(value = "/api/Cars", method = RequestMethod.GET, produces = "application/json")
-        public ResponseEntity<List<Xe>> getAll() {
-            HttpHeaders headers = new HttpHeaders();
-            List<Xe> listXe = xeService.getXes();
-
-            if (listXe == null) {
-                return new ResponseEntity<List<Xe>>(HttpStatus.NOT_FOUND);
-            }
-            headers.add("Numbers", String.valueOf(listXe.size()));
-
-            return new ResponseEntity<List<Xe>>(listXe, headers, HttpStatus.FOUND);
-        }
+//
+//        @RequestMapping(value = "/api/Cars", method = RequestMethod.GET, produces = "application/json")
+//        public ResponseEntity<List<Xe>> getAll() {
+//            HttpHeaders headers = new HttpHeaders();
+//            List<Xe> listXe = xeService.getXes();
+//
+//            if (listXe == null) {
+//                return new ResponseEntity<List<Xe>>(HttpStatus.NOT_FOUND);
+//            }
+//            headers.add("Numbers", String.valueOf(listXe.size()));
+//
+//            return new ResponseEntity<List<Xe>>(listXe, headers, HttpStatus.FOUND);
+//        }
 
 
 }

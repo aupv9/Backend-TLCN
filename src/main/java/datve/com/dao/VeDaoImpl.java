@@ -19,6 +19,7 @@ public class VeDaoImpl implements VeService {
     //get collection từ database
 
     private MongoCollection coll= MongoFactory.getCollection("datvexe","ve");
+
     @Override
     public boolean addVe(Ve ve){
         try {
@@ -43,7 +44,6 @@ public class VeDaoImpl implements VeService {
            return false;
         }
     }
-
     @Override
     public boolean cancelVe(Ve ve){
         try {
