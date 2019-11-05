@@ -6,13 +6,13 @@ public class Ve {
         private String _id;
         private String hangxe;
         private String noidon;
-        private int giodon;
+        private String giodon;
         private String noitra;
-        private int giotra;
+        private String giotra;
         private String tuyenduong;
         private int giave;
         private int phuthu;
-        private int soghe;
+        private String soghe;
         private String hinhthucthanhtoan;
         private boolean tinhtrang;
         private boolean huy;
@@ -30,11 +30,11 @@ public class Ve {
             return hangxe;
         }
 
-    public int getSoghe() {
+    public String getSoghe() {
         return soghe;
     }
 
-    public void setSoghe(int soghe) {
+    public void setSoghe(String soghe) {
         this.soghe = soghe;
     }
 
@@ -50,11 +50,11 @@ public class Ve {
             this.noidon = noidon;
         }
 
-        public int getGiodon() {
+        public String getGiodon() {
             return giodon;
         }
 
-        public void setGiodon(int giodon) {
+        public void setGiodon(String giodon) {
             this.giodon = giodon;
         }
 
@@ -66,11 +66,11 @@ public class Ve {
             this.noitra = noitra;
         }
 
-        public int getGiotra() {
+        public String getGiotra() {
             return giotra;
         }
 
-        public void setGiotra(int giotra) {
+        public void setGiotra(String giotra) {
             this.giotra = giotra;
         }
 
