@@ -1,4 +1,4 @@
-package datve.com.dao;
+package datve.com.dao.xe;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;

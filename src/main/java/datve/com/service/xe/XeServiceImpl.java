@@ -1,6 +1,6 @@
-package datve.com.service;
+package datve.com.service.xe;
 
-import datve.com.dao.XeDaoImpl;
+import datve.com.dao.xe.XeDaoImpl;
 import datve.com.model.Xe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

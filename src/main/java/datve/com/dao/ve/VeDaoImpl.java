@@ -1,10 +1,10 @@
-package datve.com.dao;
+package datve.com.dao.ve;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import datve.com.config.MongoFactory;
 import datve.com.model.Ve;
-import datve.com.service.VeService;
+import datve.com.service.ve.VeService;
 import org.apache.log4j.Logger;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;

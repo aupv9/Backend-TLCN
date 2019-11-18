@@ -1,4 +1,4 @@
-package datve.com.service;
+package datve.com.service.ve;
 
 import datve.com.model.Ve;
 

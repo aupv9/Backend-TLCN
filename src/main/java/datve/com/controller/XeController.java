@@ -1,7 +1,7 @@
 package datve.com.controller;
 
 import datve.com.model.Xe;
-import datve.com.service.XeServiceImpl;
+import datve.com.service.xe.XeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +27,7 @@ public class XeController {
         */
         @RequestMapping(value = "/api/Cars/start={start}&end={end}&date={date}", method = RequestMethod.POST, produces = "application/json")
         public ResponseEntity<List<Xe>> getXes(@PathVariable int start, @PathVariable int end, @PathVariable String date) {
+
             HttpHeaders headers = new HttpHeaders();
             List<Xe> listXe = xeService.searchXe(start, end, date);
 
@@ -43,10 +44,9 @@ public class XeController {
         * kèm theo x-user-token để xác thực
         * */
         @RequestMapping(value = "/api/Car",method = RequestMethod.POST,produces = "application/json")
-        public ResponseEntity<Xe> addXe(@RequestBody Xe xe, @RequestHeader(value ="x-user-token") String x_user_token){
+        public ResponseEntity<Xe> addXe(@RequestBody Xe xe){
             HttpHeaders headers=new HttpHeaders();
 
-            System.out.println(x_user_token);
             if(xeService.addXe(xe)){
                 return  new ResponseEntity<Xe>(xe,headers, HttpStatus.CREATED);
             }

@@ -2,7 +2,7 @@ package datve.com.controller;
 
 
 import datve.com.model.Ve;
-import datve.com.service.VeServiceImpl;
+import datve.com.service.ve.VeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
