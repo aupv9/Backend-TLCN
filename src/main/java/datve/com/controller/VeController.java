@@ -21,7 +21,7 @@ public class VeController {
     @Qualifier("veService")
     VeServiceImpl veService;
 
-    @RequestMapping(value = "/api/Ve",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "/api/ve",method = RequestMethod.POST,produces = "application/json")
     public ResponseEntity<Ve> addVe(@RequestBody Ve ve){
         HttpHeaders headers=new HttpHeaders();
         if(veService.addVe(ve)){
@@ -30,7 +30,7 @@ public class VeController {
         return new ResponseEntity<Ve>(ve,headers, HttpStatus.NOT_EXTENDED);
     }
 
-    @RequestMapping(value = "/api/VeUpdate",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "/api/ve-cancel",method = RequestMethod.POST,produces = "application/json")
     public ResponseEntity<Ve> cancelVe(@RequestBody Ve ve){
         HttpHeaders headers=new HttpHeaders();
 
