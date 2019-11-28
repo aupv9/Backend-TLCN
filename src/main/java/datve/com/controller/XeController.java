@@ -25,7 +25,7 @@ public class XeController {
         * @param end mã nơi đến
         * @param date ngày đi
         */
-        @RequestMapping(value = "/api/Cars/start={start}&end={end}&date={date}", method = RequestMethod.POST, produces = "application/json")
+        @RequestMapping(value = "/api/Cars/start={start}&end={end}&date={date}", method = RequestMethod.GET, produces = "application/json")
         public ResponseEntity<List<Xe>> getXes(@PathVariable int start, @PathVariable int end, @PathVariable String date) {
 
             HttpHeaders headers = new HttpHeaders();
