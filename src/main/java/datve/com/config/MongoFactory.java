@@ -4,7 +4,6 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;
