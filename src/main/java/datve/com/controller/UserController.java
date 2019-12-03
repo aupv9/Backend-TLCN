@@ -1,5 +1,6 @@
 package datve.com.controller;
 
+import datve.com.model.ResponseLogin;
 import datve.com.model.User;
 import datve.com.service.JWT.JwtService;
 import datve.com.service.user.UserServiceImpl;
@@ -25,24 +26,54 @@ public class UserController {
 
 
 
-    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "text/plain")
-    public ResponseEntity<String> login(@RequestBody User user){
-        String result = "";
+    /*
+    Method login
+    @param User user truyền từ client vào
+    return Response
+    * */
+    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "application/json")
+    public ResponseEntity<ResponseLogin> login(@RequestBody User user){
+
+        ResponseLogin result = new ResponseLogin();
         HttpStatus httpStatus = null;
         try {
             if (userService.checkLogin(user)) {
-                result = jwtService.generateTokenLogin(user.getUsername());
+                result.setToken(jwtService.generateTokenLogin(user.getUsername()));
+                List<String> roles=userService.loadUserByUsername(user.getUsername()).getRoles();
+                result.setRoles(roles);
                 httpStatus = HttpStatus.OK;
             } else {
-                result = "Wrong userId and password";
+                result.setToken("Wrong userId and password");
                 httpStatus = HttpStatus.BAD_REQUEST;
             }
         } catch (Exception ex) {
-            result = "Server Error";
+            result.setToken("Server Error");
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
-        return new ResponseEntity<String>(result, httpStatus);
+        return new ResponseEntity<ResponseLogin>(result, httpStatus);
     }
+//    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "text/plain")
+//    public ResponseEntity<String> login(@RequestBody User user){
+//
+//        String result = "";
+//        HttpStatus httpStatus = null;
+//        try {
+//            if (userService.checkLogin(user)) {
+//                result=jwtService.generateTokenLogin(user.getUsername());
+////                result.setToken(jwtService.generateTokenLogin(user.getUsername()));
+////                List<String> roles=userService.loadUserByUsername(user.getUsername()).getRoles();
+////                result.setRoles(roles);
+//                httpStatus = HttpStatus.OK;
+//            } else {
+//                result="Wrong userId and password";
+//                httpStatus = HttpStatus.BAD_REQUEST;
+//            }
+//        } catch (Exception ex) {
+//            result="Server Error";
+//            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+//        }
+//        return new ResponseEntity<String>(result, httpStatus);
+//    }
     @RequestMapping(value = "/api/logout",method = RequestMethod.POST,produces = "text/plain")
     public ResponseEntity<String> logout(){
         String result = "logout success";

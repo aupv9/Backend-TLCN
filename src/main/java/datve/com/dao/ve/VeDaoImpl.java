@@ -38,6 +38,8 @@ public class VeDaoImpl implements VeService {
                     .append("huy",ve.getHuy())
                     .append("ngaydat",ve.getNgaydat())
                     .append("tuyenduong",ve.getTuyenduong())
+                    .append("sdt",ve.getSdt())
+                    .append("email",ve.getEmail())
                         );
             return true;
         }catch (MongoException e){

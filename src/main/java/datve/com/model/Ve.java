@@ -14,31 +14,55 @@ public class Ve {
         private int phuthu;
         private String soghe;
         private String hinhthucthanhtoan;
-        private boolean tinhtrang;
+
+    public boolean isTinhtrang() {
+        return tinhtrang;
+    }
+
+    public boolean isHuy() {
+        return huy;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private boolean tinhtrang;
         private boolean huy;
         private String ngaydat;
+        private  String sdt;
+        private String email;
+        public String get_id() {
+                return _id;
+            }
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+            public String getHangxe() {
+                return hangxe;
+            }
 
-    public String get_id() {
-            return _id;
+        public String getSoghe() {
+            return soghe;
         }
 
-        public void set_id(String _id) {
-            this._id = _id;
+        public void setSoghe(String soghe) {
+            this.soghe = soghe;
         }
 
-        public String getHangxe() {
-            return hangxe;
-        }
-
-    public String getSoghe() {
-        return soghe;
-    }
-
-    public void setSoghe(String soghe) {
-        this.soghe = soghe;
-    }
-
-    public void setHangxe(String hangxe) {
+        public void setHangxe(String hangxe) {
             this.hangxe = hangxe;
         }
 
