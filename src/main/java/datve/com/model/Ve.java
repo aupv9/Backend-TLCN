@@ -3,6 +3,7 @@ package datve.com.model;
 
 public class Ve {
 
+        /*Property*/
         private String _id;
         private String hangxe;
         private String noidon;
@@ -14,36 +15,37 @@ public class Ve {
         private int phuthu;
         private String soghe;
         private String hinhthucthanhtoan;
-
-    public boolean isTinhtrang() {
-        return tinhtrang;
-    }
-
-    public boolean isHuy() {
-        return huy;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    private boolean tinhtrang;
+        private boolean tinhtrang;
         private boolean huy;
         private String ngaydat;
         private  String sdt;
         private String email;
+        /*getter setter*/
+        public boolean isTinhtrang() {
+            return tinhtrang;
+        }
+
+        public boolean isHuy() {
+            return huy;
+        }
+
+        public String getSdt() {
+            return sdt;
+        }
+
+        public void setSdt(String sdt) {
+            this.sdt = sdt;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+
         public String get_id() {
                 return _id;
             }
