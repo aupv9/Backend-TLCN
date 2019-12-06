@@ -2,6 +2,7 @@ package datve.com.controller;
 
 
 import datve.com.model.Mail;
+import datve.com.model.MailRequest;
 import datve.com.model.Ve;
 import datve.com.service.ve.VeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,17 +46,17 @@ public class VeController {
     }
 
     @ResponseBody
-    @RequestMapping("/sendSimpleEmail")
-    public String sendSimpleEmail(@RequestBody String emailFriend,@RequestBody String _id) {
+    @RequestMapping(value = "api/sendEmail",method = RequestMethod.POST,produces = "text/html")
+    public String sendSimpleEmail(@RequestBody MailRequest mailRequest) {
 
         // Create a Simple MailMessage.
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo(emailFriend);
+        message.setTo(mailRequest.getEmail());
         message.setSubject("Thông Báo Đặt Vé");
-        message.setText("Mã vé của bạn đã đặt là"+_id);
+        message.setText("Mã vé của bạn đã đặt là"+"-"+mailRequest.get_id());
 
-        // Send Message!
+        // Send Message
         this.emailSender.send(message);
 
         return "Email Sent!";
