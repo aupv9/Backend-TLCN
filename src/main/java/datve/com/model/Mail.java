@@ -7,7 +7,7 @@ public class Mail {
     public static final String MY_EMAIL = "aupv96@gmail.com";
 
     // Replace password!!
-    public static final String MY_PASSWORD = "spkt@123456";
+    public static final String MY_PASSWORD = "batman@2019";
 
     // And receiver!
     public  String FRIEND_EMAIL;
