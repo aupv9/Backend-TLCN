@@ -52,7 +52,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
        // http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/signup","ap").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/logout").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
                                 .antMatchers(HttpMethod.POST,"/api/ve").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-                                .antMatchers(HttpMethod.PUT,"/api/ve-cancel").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')");
+                                .antMatchers(HttpMethod.PUT,"/api/ve-cancel").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                                .antMatchers(HttpMethod.POST,"/api/sendEmail").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')");
 
         /*
         * add filter thỏa điều kiện rồi mới vào Controller
