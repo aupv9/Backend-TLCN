@@ -46,7 +46,7 @@ public class VeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "api/sendEmail",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "api/sendEmail",method = RequestMethod.POST,produces = "text/plain")
     public String sendSimpleEmail(@RequestBody MailRequest mailRequest) {
 
         // Create a Simple MailMessage.
@@ -54,7 +54,7 @@ public class VeController {
 
         message.setTo(mailRequest.getEmail());
         message.setSubject("Thông Báo Đặt Vé");
-        message.setText("Mã vé của bạn đã đặt là"+"-"+mailRequest.get_id());
+        message.setText("Mã vé của bạn đã đặt là"+" "+mailRequest.get_id());
 
         // Send Message
         this.emailSender.send(message);
