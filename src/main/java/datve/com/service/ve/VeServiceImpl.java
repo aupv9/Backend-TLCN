@@ -22,4 +22,9 @@ public class VeServiceImpl implements VeService {
         return veDao.cancelVe(ve);
     }
 
+    @Override
+    public Ve searchVe(String _id, String phone) {
+        return veDao.searchVe(_id,phone);
+    }
+
 }

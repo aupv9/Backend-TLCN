@@ -2,18 +2,26 @@ package datve.com.dao.ve;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import datve.com.config.MongoFactory;
+import datve.com.model.Ghe;
+import datve.com.model.LichTrinh;
 import datve.com.model.Ve;
+import datve.com.model.Xe;
 import datve.com.service.ve.VeService;
 import org.apache.log4j.Logger;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
-import static com.mongodb.client.model.Filters.eq;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.in;
 
 
 @Repository(value = "veDao")
-public class VeDaoImpl implements VeService {
+public class VeDaoImpl implements VeDao {
 
     private static Logger log = Logger.getLogger(VeDaoImpl.class);
     //get collection từ database
@@ -37,7 +45,7 @@ public class VeDaoImpl implements VeService {
                     .append("hinhthucthanhtoan",ve.getHinhthucthanhtoan())
                     .append("huy",ve.getHuy())
                     .append("ngaydat",ve.getNgaydat())
-                    .append("tuyenduong",ve.getTuyenduong())
+                    .append("tuyenduong",ve.getTuyenduong()).append("tinhtrang",ve.getTinhtrang())
                     .append("sdt",ve.getSdt())
                     .append("email",ve.getEmail())
                         );
@@ -57,5 +65,28 @@ public class VeDaoImpl implements VeService {
             System.out.println(e);
         }
         return false;
+    }
+
+    @Override
+    public Ve searchVe(String _id, String phone) {
+
+        try {
+            MongoCursor<Document> cursor  =  coll.find(and(eq("_id",_id),eq("sdt",phone))).iterator();
+            Ve ve=new Ve();
+            while(cursor.hasNext()) {
+
+                Document doc=cursor.next();
+                ve.set_id(doc.get("_id").toString());
+                ve.setHangxe(doc.get("hangxe").toString());
+                ve.setNoidon(doc.get("noidon").toString());
+                ve.setGiodon(doc.get("giodon").toString());
+                ve.setNoitra(doc.get("noitra").toString());
+                ve.setGiotra(doc.get("giotra").toString());
+            }
+            return ve;
+        }catch (MongoException e){
+            System.out.println(e);
+        }
+        return null;
     }
 }

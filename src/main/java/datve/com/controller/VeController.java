@@ -61,5 +61,14 @@ public class VeController {
 
         return "Email Sent!";
     }
+    @RequestMapping(value = "/api/search-ve",method = RequestMethod.POST,produces = "application/json")
+    public ResponseEntity<Ve> searchVe(@RequestBody Ve ve){
+        HttpHeaders headers=new HttpHeaders();
+        Ve ticket= veService.searchVe(ve.get_id(),ve.getSdt());
+        if(ticket != null){
+            return  new ResponseEntity<Ve>(ticket,headers, HttpStatus.OK);
+        }
+        return new ResponseEntity<Ve>(null,headers, HttpStatus.NOT_FOUND);
 
+    }
 }
