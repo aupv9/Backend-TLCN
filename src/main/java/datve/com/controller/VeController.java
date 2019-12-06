@@ -46,7 +46,7 @@ public class VeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "api/sendEmail",method = RequestMethod.POST,produces = "text/html")
+    @RequestMapping(value = "api/sendEmail",method = RequestMethod.POST,produces = "application/json")
     public String sendSimpleEmail(@RequestBody MailRequest mailRequest) {
 
         // Create a Simple MailMessage.
