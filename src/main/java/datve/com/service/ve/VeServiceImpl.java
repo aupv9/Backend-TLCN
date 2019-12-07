@@ -13,18 +13,18 @@ public class VeServiceImpl implements VeService {
     VeDaoImpl veDao;
 
     @Override
-    public boolean addVe(Ve ve){
+    public boolean addVe(Ve ve) {
         return veDao.addVe(ve);
     }
 
     @Override
-    public boolean cancelVe(Ve ve){
+    public boolean cancelVe(Ve ve) {
         return veDao.cancelVe(ve);
     }
 
     @Override
     public Ve searchVe(String _id, String phone) {
-        return veDao.searchVe(_id,phone);
+        return veDao.searchVe(_id, phone);
     }
 
 }

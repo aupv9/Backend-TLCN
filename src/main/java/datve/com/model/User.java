@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(value = { "authorities"})
+@JsonIgnoreProperties(value = {"authorities"})
 public class User {
     private ObjectId _id;
     private String username;

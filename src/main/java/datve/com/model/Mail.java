@@ -10,7 +10,7 @@ public class Mail {
     public static final String MY_PASSWORD = "batman@2019";
 
     // And receiver!
-    public  String FRIEND_EMAIL;
+    public String FRIEND_EMAIL;
 
     public String getFriendEmail() {
         return friendEmail;

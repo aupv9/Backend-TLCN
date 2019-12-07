@@ -18,6 +18,7 @@ public class VexeApplication {
     public static void main(String[] args) {
         SpringApplication.run(VexeApplication.class, args);
     }
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {

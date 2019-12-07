@@ -8,6 +8,7 @@ public class Xe {
     private String loaixe;
     private String nhaxe;
     private String giodi;
+
     public int[] getTinhdiqua() {
         return tinhdiqua;
     }
@@ -28,6 +29,7 @@ public class Xe {
     private String chuyendi;
     private int danhgia;
     private int[] tinhdiqua;
+
     public int get_id() {
         return _id;
     }

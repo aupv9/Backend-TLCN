@@ -22,21 +22,20 @@ public class UserController {
     private UserServiceImpl userService;
 
 
-
     /*
     Method login
     @param User user truyền từ client vào
     return Response
     * */
-    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "application/json")
-    public ResponseEntity<ResponseLogin> login(@RequestBody User user){
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<ResponseLogin> login(@RequestBody User user) {
 
         ResponseLogin result = new ResponseLogin();
         HttpStatus httpStatus = null;
         try {
             if (userService.checkLogin(user)) {
                 result.setToken(jwtService.generateTokenLogin(user.getUsername()));
-                List<String> roles=userService.loadUserByUsername(user.getUsername()).getRoles();
+                List<String> roles = userService.loadUserByUsername(user.getUsername()).getRoles();
                 result.setRoles(roles);
                 httpStatus = HttpStatus.OK;
             } else {
@@ -49,7 +48,8 @@ public class UserController {
         }
         return new ResponseEntity<ResponseLogin>(result, httpStatus);
     }
-//    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "text/plain")
+
+    //    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "text/plain")
 //    public ResponseEntity<String> login(@RequestBody User user){
 //
 //        String result = "";
@@ -71,13 +71,14 @@ public class UserController {
 //        }
 //        return new ResponseEntity<String>(result, httpStatus);
 //    }
-    @RequestMapping(value = "/api/logout",method = RequestMethod.POST,produces = "text/plain")
-    public ResponseEntity<String> logout(){
+    @RequestMapping(value = "/api/logout", method = RequestMethod.POST, produces = "text/plain")
+    public ResponseEntity<String> logout() {
         String result = "logout success";
         return new ResponseEntity<String>(result, HttpStatus.OK);
     }
-    @RequestMapping(value = "/api/sign-up",method = RequestMethod.POST,produces = "application/json")
-    public ResponseEntity<User> addUser(@RequestBody User user){
+
+    @RequestMapping(value = "/api/sign-up", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<User> addUser(@RequestBody User user) {
 
         HttpStatus httpStatus = null;
         try {
@@ -91,8 +92,9 @@ public class UserController {
         }
         return new ResponseEntity<User>(user, httpStatus);
     }
-    @RequestMapping(value = "/api/users",method = RequestMethod.GET,produces = "application/json")
-    public ResponseEntity<List<User>> getUser(){
+
+    @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<User>> getUser() {
         return new ResponseEntity<List<User>>(userService.findAll(), HttpStatus.OK);
     }
 }

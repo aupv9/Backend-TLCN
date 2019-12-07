@@ -22,19 +22,20 @@ public class XeDaoImpl implements XeDao {
     private static Logger log = Logger.getLogger(XeDaoImpl.class);
     //get collection từ database
 
-    private MongoCollection coll= MongoFactory.getCollection("datvexe","xe");
+    private MongoCollection coll = MongoFactory.getCollection("datvexe", "xe");
+
     public List<Xe> searchXe(int start, int end, String date) {
         /*
-        * Tìm vé xe thông qua nơi đi qua và ngày đi
-        * */
-        MongoCursor<Document> cursor = coll.find(and(in("tinhdiqua",start), in("tinhdiqua",end), eq("ngaydi",date))).iterator();
-        List<Xe> list=new ArrayList<Xe>();
+         * Tìm vé xe thông qua nơi đi qua và ngày đi
+         * */
+        MongoCursor<Document> cursor = coll.find(and(in("tinhdiqua", start), in("tinhdiqua", end), eq("ngaydi", date))).iterator();
+        List<Xe> list = new ArrayList<Xe>();
         /*
-        * Set dữ liệu search được vào mảng xe
-        * */
-        while(cursor.hasNext()) {
-            Xe xe=new Xe();
-            Document doc=cursor.next();
+         * Set dữ liệu search được vào mảng xe
+         * */
+        while (cursor.hasNext()) {
+            Xe xe = new Xe();
+            Document doc = cursor.next();
             xe.set_id(Integer.parseInt(doc.get("_id").toString()));
             xe.setLoaixe(doc.get("loaixe").toString());
             xe.setNhaxe(doc.get("nhaxe").toString());
@@ -45,11 +46,11 @@ public class XeDaoImpl implements XeDao {
             xe.setHinhanh(doc.get("hinhanh").toString());
             xe.setNgaydi(doc.get("ngaydi").toString());
             xe.setChinhsachhuyve(doc.get("chinhsachhuyve").toString());
-            List<Ghe> listGhe=new ArrayList<Ghe>();
-            listGhe=(List<Ghe>)doc.get("danhsachghe");
+            List<Ghe> listGhe = new ArrayList<Ghe>();
+            listGhe = (List<Ghe>) doc.get("danhsachghe");
             xe.setDanhsachghe(listGhe);
-            List<LichTrinh> listLT=new ArrayList<LichTrinh>();
-            listLT=(List<LichTrinh>) doc.get("lichtrinh");
+            List<LichTrinh> listLT = new ArrayList<LichTrinh>();
+            listLT = (List<LichTrinh>) doc.get("lichtrinh");
             xe.setLichtrinh(listLT);
             list.add(xe);
         }
@@ -58,66 +59,65 @@ public class XeDaoImpl implements XeDao {
 
     public boolean addXe(Xe xe) {
         try {
-            coll.insertOne(new Document("_id",xe.get_id())
-                    .append("loaixe",xe.getLoaixe())
-                    .append("nhaxe",xe.getNhaxe())
-                    .append("loaidi",xe.getLoaidi())
-                    .append("chuyendi",xe.getChuyendi())
-                    .append("danhgia",xe.getDanhgia())
-                    .append("hinhanh",xe.getHinhanh())
-                    .append("tinhdiqua",xe.getTinhdiqua())
-                    .append("giodi",xe.getGiodi())
-                    .append("ngaydi",xe.getNgaydi())
-                    .append("chinhsachhuyve",xe.getChinhsachhuyve())
-                    .append("lichtrinh",xe.getLichtrinh())
-                    .append("danhsachghe",xe.getDanhsachghe())
+            coll.insertOne(new Document("_id", xe.get_id())
+                    .append("loaixe", xe.getLoaixe())
+                    .append("nhaxe", xe.getNhaxe())
+                    .append("loaidi", xe.getLoaidi())
+                    .append("chuyendi", xe.getChuyendi())
+                    .append("danhgia", xe.getDanhgia())
+                    .append("hinhanh", xe.getHinhanh())
+                    .append("tinhdiqua", xe.getTinhdiqua())
+                    .append("giodi", xe.getGiodi())
+                    .append("ngaydi", xe.getNgaydi())
+                    .append("chinhsachhuyve", xe.getChinhsachhuyve())
+                    .append("lichtrinh", xe.getLichtrinh())
+                    .append("danhsachghe", xe.getDanhsachghe())
             );
             return true;
-        }
-        catch (MongoException e){
+        } catch (MongoException e) {
             System.out.println(e);
         }
 
         return false;
     }
-    public boolean updateXe(Xe xe){
+
+    public boolean updateXe(Xe xe) {
         try {
-            coll.updateOne(eq("_id",xe.get_id()),new Document("$set",new Document("loaixe",xe.getLoaixe())
-                    .append("nhaxe",xe.getNhaxe())
-                    .append("loaidi",xe.getLoaidi())
-                    .append("chuyendi",xe.getChuyendi())
-                    .append("danhgia",xe.getDanhgia())
-                    .append("hinhanh",xe.getHinhanh())
-                    .append("tinhdiqua",xe.getTinhdiqua())
-                    .append("giodi",xe.getGiodi())
-                    .append("ngaydi",xe.getNgaydi())
-                    .append("chinhsachhuyve",xe.getChinhsachhuyve())
-                    .append("lichtrinh",xe.getLichtrinh())
-                    .append("danhsachghe",xe.getDanhsachghe())
+            coll.updateOne(eq("_id", xe.get_id()), new Document("$set", new Document("loaixe", xe.getLoaixe())
+                            .append("nhaxe", xe.getNhaxe())
+                            .append("loaidi", xe.getLoaidi())
+                            .append("chuyendi", xe.getChuyendi())
+                            .append("danhgia", xe.getDanhgia())
+                            .append("hinhanh", xe.getHinhanh())
+                            .append("tinhdiqua", xe.getTinhdiqua())
+                            .append("giodi", xe.getGiodi())
+                            .append("ngaydi", xe.getNgaydi())
+                            .append("chinhsachhuyve", xe.getChinhsachhuyve())
+                            .append("lichtrinh", xe.getLichtrinh())
+                            .append("danhsachghe", xe.getDanhsachghe())
                     )
             );
             return true;
-        }
-        catch (MongoException e){
+        } catch (MongoException e) {
             System.out.println(e);
         }
 
         return false;
     }
 
-    public List<Xe> getXes(){
+    public List<Xe> getXes() {
         /*
          * Tìm vé xe thông qua nơi đi qua và ngày đi
          * */
         MongoCursor<Document> cursor = coll.find()
                 .iterator();
-        List<Xe> list=new ArrayList<Xe>();
+        List<Xe> list = new ArrayList<Xe>();
         /*
          * Set dữ liệu search được vào mảng xe
          * */
-        while(cursor.hasNext()) {
-            Xe xe=new Xe();
-            Document doc=cursor.next();
+        while (cursor.hasNext()) {
+            Xe xe = new Xe();
+            Document doc = cursor.next();
             xe.set_id(Integer.parseInt(doc.get("_id").toString()));
             xe.setLoaixe(doc.get("loaixe").toString());
             xe.setNhaxe(doc.get("nhaxe").toString());
@@ -128,11 +128,11 @@ public class XeDaoImpl implements XeDao {
             xe.setHinhanh(doc.get("hinhanh").toString());
             xe.setNgaydi(doc.get("ngaydi").toString());
             xe.setChinhsachhuyve(doc.get("chinhsachhuyve").toString());
-            List<Ghe> listGhe=new ArrayList<Ghe>();
-            listGhe=(List<Ghe>)doc.get("danhsachghe");
+            List<Ghe> listGhe = new ArrayList<Ghe>();
+            listGhe = (List<Ghe>) doc.get("danhsachghe");
             xe.setDanhsachghe(listGhe);
-            List<LichTrinh> listLT=new ArrayList<LichTrinh>();
-            listLT=(List<LichTrinh>) doc.get("lichtrinh");
+            List<LichTrinh> listLT = new ArrayList<LichTrinh>();
+            listLT = (List<LichTrinh>) doc.get("lichtrinh");
             xe.setLichtrinh(listLT);
             list.add(xe);
         }

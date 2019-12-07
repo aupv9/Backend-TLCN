@@ -16,9 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository("userDao")
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
-    private MongoCollection coll= MongoFactory.getCollection("datvexe","user");
+    private MongoCollection coll = MongoFactory.getCollection("datvexe", "user");
 
     @Override
     public boolean checkLogout(String username) {
@@ -48,9 +48,9 @@ public class UserDaoImpl implements UserDao{
             coll.insertOne(new Document("username", user.getUsername())
                     .append("password", user.getPassword())
                     .append("roles", Arrays.asList("ROLE_USER"))
-                    .append("deleted",false));
+                    .append("deleted", false));
             return true;
-        }catch (MongoException e){
+        } catch (MongoException e) {
             System.out.println(e);
         }
         return false;
@@ -79,14 +79,14 @@ public class UserDaoImpl implements UserDao{
     @Override
     public List<User> findAll() {
         MongoCursor<Document> cursor = coll.find().iterator();
-        List<User> list=new ArrayList<User>();
-        while(cursor.hasNext()) {
-            User user=new User();
-            Document doc=cursor.next();
+        List<User> list = new ArrayList<User>();
+        while (cursor.hasNext()) {
+            User user = new User();
+            Document doc = cursor.next();
             user.setId(doc.getObjectId("_id"));
             user.setUsername(doc.get("username").toString());
             user.setPassword(doc.get("password").toString());
-            user.setRoles((List<String>)doc.get("roles"));
+            user.setRoles((List<String>) doc.get("roles"));
             user.setDeleted((Boolean) doc.get("deleted"));
             list.add(user);
         }
