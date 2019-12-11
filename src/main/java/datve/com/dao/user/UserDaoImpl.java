@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public boolean signUp(User user) {
 
         try {
 
@@ -65,6 +65,21 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean deleteUser(int id) {
+        return false;
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        try {
+            coll.insertOne(new Document("_id",user.get_id())
+                    .append("username", user.getUsername())
+                    .append("password", user.getPassword())
+                    .append("roles", user.getRoles())
+                    .append("deleted", false));
+            return true;
+        } catch (MongoException e) {
+            System.out.println(e);
+        }
         return false;
     }
 

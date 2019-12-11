@@ -81,8 +81,21 @@ public class UserController {
     }
 
     @RequestMapping(value = "/api/sign-up", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<User> signUp(@RequestBody User user) {
+        HttpStatus httpStatus = null;
+        try {
+            if (userService.signUp(user)) {
+                httpStatus = HttpStatus.OK;
+            } else {
+                httpStatus = HttpStatus.NOT_EXTENDED;
+            }
+        } catch (Exception ex) {
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<User>(user, httpStatus);
+    }
+    @RequestMapping(value = "/api/add-user", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        System.out.println(user.get_id());
         HttpStatus httpStatus = null;
         try {
             if (userService.addUser(user)) {
@@ -95,7 +108,6 @@ public class UserController {
         }
         return new ResponseEntity<User>(user, httpStatus);
     }
-
     @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<User>> getUser() {
         return new ResponseEntity<List<User>>(userService.findAll(), HttpStatus.OK);

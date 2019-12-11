@@ -13,9 +13,11 @@ public interface UserDao {
 
     boolean checkLogout(String username);
 
-    boolean addUser(User user);
+    boolean signUp(User user);
 
     boolean editUser(User user);
 
     boolean deleteUser(int id);
+
+    boolean addUser(User user);
 }

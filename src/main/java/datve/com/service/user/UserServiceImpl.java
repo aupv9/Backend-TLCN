@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addUser(User user) {
-        return userDao.addUser(user);
+    public boolean signUp(User user) {
+        return userDao.signUp(user);
     }
 
     @Override
@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteUser(int id) {
         return false;
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        return userDao.addUser(user);
     }
 
     @Override
