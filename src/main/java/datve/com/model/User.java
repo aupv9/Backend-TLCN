@@ -12,7 +12,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(value = {"authorities"})
 public class User {
-    private ObjectId _id;
+    private String _id;
     private String username;
     private String password;
     private List<String> roles;
@@ -29,10 +29,12 @@ public class User {
     public User() {
     }
 
-    public User(ObjectId id, String username, String password) {
-        this._id = id;
-        this.username = username;
-        this.password = password;
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public List<GrantedAuthority> getAuthorities() {
@@ -43,13 +45,7 @@ public class User {
         return authorities;
     }
 
-    public ObjectId getId() {
-        return _id;
-    }
 
-    public void setId(ObjectId id) {
-        this._id = id;
-    }
 
     public String getUsername() {
         return username;

@@ -34,6 +34,9 @@ public class UserController {
         HttpStatus httpStatus = null;
         try {
             if (userService.checkLogin(user)) {
+                System.out.println(user.getUsername());
+                System.out.println(user.getPassword());
+
                 result.setToken(jwtService.generateTokenLogin(user.getUsername()));
                 List<String> roles = userService.loadUserByUsername(user.getUsername()).getRoles();
                 result.setRoles(roles);
@@ -79,7 +82,7 @@ public class UserController {
 
     @RequestMapping(value = "/api/sign-up", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<User> addUser(@RequestBody User user) {
-
+        System.out.println(user.get_id());
         HttpStatus httpStatus = null;
         try {
             if (userService.addUser(user)) {

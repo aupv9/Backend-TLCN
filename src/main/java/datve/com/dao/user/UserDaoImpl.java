@@ -45,7 +45,9 @@ public class UserDaoImpl implements UserDao {
     public boolean addUser(User user) {
 
         try {
-            coll.insertOne(new Document("username", user.getUsername())
+
+            coll.insertOne(new Document("_id",user.get_id())
+                    .append("username", user.getUsername())
                     .append("password", user.getPassword())
                     .append("roles", Arrays.asList("ROLE_USER"))
                     .append("deleted", false));
@@ -83,7 +85,7 @@ public class UserDaoImpl implements UserDao {
         while (cursor.hasNext()) {
             User user = new User();
             Document doc = cursor.next();
-            user.setId(doc.getObjectId("_id"));
+            user.set_id(doc.get("_id").toString());
             user.setUsername(doc.get("username").toString());
             user.setPassword(doc.get("password").toString());
             user.setRoles((List<String>) doc.get("roles"));
