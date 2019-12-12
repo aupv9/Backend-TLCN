@@ -32,6 +32,9 @@ public class Ghe {
         return dat;
     }
 
+    public Ghe() {
+    }
+
     public Ghe(int maGhe, int stt, int gia, boolean dat) {
         this.maGhe = maGhe;
         this.stt = stt;

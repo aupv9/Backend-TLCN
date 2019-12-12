@@ -1,22 +1,16 @@
 package datve.com.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import datve.com.model.LichTrinh;
-import datve.com.model.Ghe;
-
-//@JsonSubTypes({
-//        @JsonSubTypes.Type(value = LichTrinh.class, name = "lichtrinh")})
 public class Xe {
 
-    private int _id;
+    private String _id;
     private String loaixe;
     private String nhaxe;
     private String giodi;
 
-    public Xe(int _id, String loaixe, String nhaxe, String giodi, boolean deleted, String loaidi, String chuyendi, int danhgia, ArrayList<Integer> tinhdiqua, String hinhanh, String ngaydi, String chinhsachhuyve, ArrayList<LichTrinh> lichtrinh, ArrayList<Ghe> danhsachghe) {
+    public Xe(String _id, String loaixe, String nhaxe, String giodi, boolean deleted, String loaidi, String chuyendi, int danhgia,
+              ArrayList<Integer> tinhdiqua, String hinhanh, String ngaydi, String chinhsachhuyve, ArrayList<LichTrinh> lichtrinh, ArrayList<Ghe> danhsachghe) {
         this._id = _id;
         this.loaixe = loaixe;
         this.nhaxe = nhaxe;
@@ -51,7 +45,7 @@ public class Xe {
         return giodi;
     }
 
-    public boolean isDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
 
@@ -68,11 +62,11 @@ public class Xe {
     private int danhgia;
     private ArrayList<Integer> tinhdiqua;
 
-    public int get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 

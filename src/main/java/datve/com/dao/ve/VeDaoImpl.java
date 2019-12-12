@@ -102,6 +102,66 @@ public class VeDaoImpl implements VeDao {
     @Override
     public List<Ve> listVeToDate(String date) {
 
+        try {
+            MongoCursor<Document> cursor = coll.find(eq("ngaydat",date)).iterator();
+            List<Ve> listVe=new ArrayList<>();
+            while (cursor.hasNext()) {
+                Ve ve = new Ve();
+                Document doc = cursor.next();
+                ve.set_id(doc.get("_id").toString());
+                ve.setHangxe(doc.get("hangxe").toString());
+                ve.setNoidon(doc.get("noidon").toString());
+                ve.setGiodon(doc.get("giodon").toString());
+                ve.setNoitra(doc.get("noitra").toString());
+                ve.setGiotra(doc.get("giotra").toString());
+                ve.setSoghe(doc.get("soghe").toString());
+                ve.setTuyenduong(doc.get("tuyenduong").toString());
+                ve.setGiave(Integer.parseInt(doc.get("giave").toString()));
+                ve.setPhuthu(Integer.parseInt(doc.get("phuthu").toString()));
+                ve.setHinhthucthanhtoan(doc.get("hinhthucthanhtoan").toString());
+                ve.setTinhtrang(Boolean.parseBoolean(doc.get("tinhtrang").toString()));
+                ve.setHuy(Boolean.parseBoolean(doc.get("huy").toString()));
+                ve.setNgaydat(doc.get("ngaydat").toString());
+                listVe.add(ve);
+            }
+            return listVe;
+        } catch (MongoException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Ve> getVe() {
+        try {
+            MongoCursor<Document> cursor = coll.find().iterator();
+            List<Ve> listVe=new ArrayList<>();
+            while (cursor.hasNext()) {
+                Ve ve = new Ve();
+                Document doc = cursor.next();
+                ve.set_id(doc.get("_id").toString());
+                ve.setHangxe(doc.get("hangxe").toString());
+                ve.setNoidon(doc.get("noidon").toString());
+                ve.setGiodon(doc.get("giodon").toString());
+                ve.setNoitra(doc.get("noitra").toString());
+                ve.setGiotra(doc.get("giotra").toString());
+                ve.setSoghe(doc.get("soghe").toString());
+                ve.setTuyenduong(doc.get("tuyenduong").toString());
+                ve.setGiave(Integer.parseInt(doc.get("giave").toString()));
+                ve.setPhuthu(Integer.parseInt(doc.get("phuthu").toString()));
+                ve.setHinhthucthanhtoan(doc.get("hinhthucthanhtoan").toString());
+                ve.setTinhtrang(Boolean.parseBoolean(doc.get("tinhtrang").toString()));
+                ve.setHuy(Boolean.parseBoolean(doc.get("huy").toString()));
+                ve.setNgaydat(doc.get("ngaydat").toString());
+                ve.setEmail(doc.get("email").toString());
+                ve.setSdt(doc.get("sdt").toString());
+                listVe.add(ve);
+
+            }
+            return listVe;
+        } catch (MongoException e) {
+            System.out.println(e);
+        }
         return null;
     }
 }

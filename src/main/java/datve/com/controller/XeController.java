@@ -54,7 +54,7 @@ public class XeController {
         return new ResponseEntity<Xe>(xe, headers, HttpStatus.NOT_EXTENDED);
     }
 
-    @RequestMapping(value = "/api/Car/update", method = RequestMethod.PUT, produces = "application/json")
+    @RequestMapping(value = "/api/Car/update", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Xe> updateXe(@RequestBody Xe xe) {
 
         HttpHeaders headers = new HttpHeaders();
@@ -63,21 +63,29 @@ public class XeController {
         }
         return new ResponseEntity<Xe>(xe, headers, HttpStatus.NOT_MODIFIED);
     }
+    @RequestMapping(value = "/api/Car/delete", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Xe> deleteXe(@RequestBody Xe xe) {
 
+        HttpHeaders headers = new HttpHeaders();
+        if (xeService.deleteXe(xe)) {
+            return new ResponseEntity<Xe>(xe, headers, HttpStatus.OK);
+        }
+        return new ResponseEntity<Xe>(xe, headers, HttpStatus.NOT_MODIFIED);
+    }
     /**/
-//
-//        @RequestMapping(value = "/api/Cars", method = RequestMethod.GET, produces = "application/json")
-//        public ResponseEntity<List<Xe>> getAll() {
-//            HttpHeaders headers = new HttpHeaders();
-//            List<Xe> listXe = xeService.getXes();
-//
-//            if (listXe == null) {
-//                return new ResponseEntity<List<Xe>>(HttpStatus.NOT_FOUND);
-//            }
-//            headers.add("Numbers", String.valueOf(listXe.size()));
-//
-//            return new ResponseEntity<List<Xe>>(listXe, headers, HttpStatus.FOUND);
-//        }
+
+        @RequestMapping(value = "/api/Cars", method = RequestMethod.GET, produces = "application/json")
+        public ResponseEntity<List<Xe>> getAll() {
+            HttpHeaders headers = new HttpHeaders();
+            List<Xe> listXe = xeService.getXes();
+
+            if (listXe == null) {
+                return new ResponseEntity<List<Xe>>(HttpStatus.NOT_FOUND);
+            }
+            headers.add("Numbers", String.valueOf(listXe.size()));
+
+            return new ResponseEntity<List<Xe>>(listXe, headers, HttpStatus.OK);
+        }
 
 
 }

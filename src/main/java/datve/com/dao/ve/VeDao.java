@@ -15,4 +15,6 @@ public interface VeDao {
     Ve searchVe(String _id, String phone);
 
     List<Ve> listVeToDate(String date);
+
+    List<Ve> getVe();
 }

@@ -25,12 +25,17 @@ public class LichTrinh {
         return diachi;
     }
 
+    public LichTrinh() {
+
+    }
+
     public LichTrinh(String thoigiandi, String diemdi, String diachi, int tinh) {
         this.thoigiandi = thoigiandi;
         this.diemdi = diemdi;
         this.diachi = diachi;
         this.tinh = tinh;
     }
+
 
     public void setDiachi(String diachi) {
         this.diachi = diachi;

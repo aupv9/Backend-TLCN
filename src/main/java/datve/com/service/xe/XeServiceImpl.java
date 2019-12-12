@@ -33,5 +33,10 @@ public class XeServiceImpl implements XeService {
     public List<Xe> getXes() {
         return xeDao.getXes();
     }
+
+    @Override
+    public boolean deleteXe(Xe xe) {
+        return xeDao.deleteXe(xe);
+    }
 }
 

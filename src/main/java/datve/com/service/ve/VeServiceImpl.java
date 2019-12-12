@@ -5,6 +5,8 @@ import datve.com.model.Ve;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("veService")
 public class VeServiceImpl implements VeService {
 
@@ -18,6 +20,11 @@ public class VeServiceImpl implements VeService {
     }
 
     @Override
+    public List<Ve> getVe() {
+        return veDao.getVe();
+    }
+
+    @Override
     public boolean cancelVe(Ve ve) {
         return veDao.cancelVe(ve);
     }
@@ -25,6 +32,11 @@ public class VeServiceImpl implements VeService {
     @Override
     public Ve searchVe(String _id, String phone) {
         return veDao.searchVe(_id, phone);
+    }
+
+    @Override
+    public List<Ve> listVeToDate(String date) {
+        return veDao.listVeToDate(date);
     }
 
 }

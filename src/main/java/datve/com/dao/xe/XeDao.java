@@ -12,6 +12,7 @@ public interface XeDao {
 
     boolean updateXe(Xe xe);
 
+    boolean deleteXe(Xe xe);
     List<Xe> getXes();
 
 }

@@ -14,6 +14,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/")
 public class VeController {
@@ -70,5 +72,24 @@ public class VeController {
             return new ResponseEntity<Ve>(ticket, headers, HttpStatus.OK);
         }
         return new ResponseEntity<Ve>(null, headers, HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/api/search-ve-day", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<List<Ve>> searchVeToDay(@RequestBody Ve ve) {
+        HttpHeaders headers = new HttpHeaders();
+        List<Ve> ticket = veService.listVeToDate(ve.getNgaydat());
+        if (ticket != null) {
+            return new ResponseEntity<List<Ve>>(ticket, headers, HttpStatus.OK);
+        }
+        return new ResponseEntity<List<Ve>>(null, headers, HttpStatus.NOT_FOUND);
+    }
+    @RequestMapping(value = "/api/get-ve", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<Ve>> getVe() {
+        HttpHeaders headers = new HttpHeaders();
+        List<Ve> ticket = veService.getVe();
+        if (ticket != null) {
+            return new ResponseEntity<List<Ve>>(ticket, headers, HttpStatus.OK);
+        }
+        return new ResponseEntity<List<Ve>>(null, headers, HttpStatus.NOT_FOUND);
     }
 }
