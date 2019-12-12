@@ -17,7 +17,7 @@ public interface UserDao {
 
     boolean editUser(User user);
 
-    boolean deleteUser(int id);
+    boolean deleteUser(User user);
 
     boolean addUser(User user);
 }

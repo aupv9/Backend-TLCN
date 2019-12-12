@@ -38,12 +38,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean editUser(User user) {
-        return false;
+        return userDao.editUser(user);
     }
 
     @Override
-    public boolean deleteUser(int id) {
-        return false;
+    public boolean deleteUser(User user) {
+        return userDao.deleteUser(user);
     }
 
     @Override

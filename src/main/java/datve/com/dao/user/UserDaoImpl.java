@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.mongodb.client.model.Filters.eq;
+
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
@@ -60,16 +62,37 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean editUser(User user) {
-        return false;
+
+        try {
+            coll.updateOne(eq("_id",user.get_id()),
+                    new Document("$set", new Document("username", user.getUsername())
+                            .append("password",user.getPassword())
+                            .append("roles",user.getRoles())
+                            .append("deleted",user.isDeleted())));
+            return true;
+        }catch (MongoException e){
+            System.out.println(e);
+        }
+            return false;
     }
 
     @Override
-    public boolean deleteUser(int id) {
-        return false;
+    public boolean deleteUser(User user) {
+        try{
+            coll.updateOne(eq("_id",user.get_id()),
+                    new Document("$set", new Document("deleted",true))
+            );
+            return true;
+        }
+        catch (MongoException e){
+        System.out.println(e);
+        }
+            return false;
     }
 
     @Override
     public boolean addUser(User user) {
+        System.out.println(user.get_id());
         try {
             coll.insertOne(new Document("_id",user.get_id())
                     .append("username", user.getUsername())

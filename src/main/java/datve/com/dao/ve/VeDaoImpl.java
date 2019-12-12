@@ -45,7 +45,8 @@ public class VeDaoImpl implements VeDao {
                             .append("hinhthucthanhtoan", ve.getHinhthucthanhtoan())
                             .append("huy", ve.getHuy())
                             .append("ngaydat", ve.getNgaydat())
-                            .append("tuyenduong", ve.getTuyenduong()).append("tinhtrang", ve.getTinhtrang())
+                            .append("tuyenduong", ve.getTuyenduong())
+                            .append("tinhtrang", ve.getTinhtrang())
                             .append("sdt", ve.getSdt())
                             .append("email", ve.getEmail())
             );

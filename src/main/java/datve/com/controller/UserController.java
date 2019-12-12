@@ -52,28 +52,6 @@ public class UserController {
         return new ResponseEntity<ResponseLogin>(result, httpStatus);
     }
 
-    //    @RequestMapping(value = "/api/login",method = RequestMethod.POST,produces = "text/plain")
-//    public ResponseEntity<String> login(@RequestBody User user){
-//
-//        String result = "";
-//        HttpStatus httpStatus = null;
-//        try {
-//            if (userService.checkLogin(user)) {
-//                result=jwtService.generateTokenLogin(user.getUsername());
-////                result.setToken(jwtService.generateTokenLogin(user.getUsername()));
-////                List<String> roles=userService.loadUserByUsername(user.getUsername()).getRoles();
-////                result.setRoles(roles);
-//                httpStatus = HttpStatus.OK;
-//            } else {
-//                result="Wrong userId and password";
-//                httpStatus = HttpStatus.BAD_REQUEST;
-//            }
-//        } catch (Exception ex) {
-//            result="Server Error";
-//            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-//        }
-//        return new ResponseEntity<String>(result, httpStatus);
-//    }
     @RequestMapping(value = "/api/logout", method = RequestMethod.POST, produces = "text/plain")
     public ResponseEntity<String> logout() {
         String result = "logout success";
@@ -96,6 +74,7 @@ public class UserController {
     }
     @RequestMapping(value = "/api/add-user", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<User> addUser(@RequestBody User user) {
+
         HttpStatus httpStatus = null;
         try {
             if (userService.addUser(user)) {
@@ -111,5 +90,33 @@ public class UserController {
     @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<User>> getUser() {
         return new ResponseEntity<List<User>>(userService.findAll(), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/api/edit-user", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<User> editUser(@RequestBody User user) {
+        HttpStatus httpStatus = null;
+        try {
+            if (userService.editUser(user)) {
+                httpStatus = HttpStatus.OK;
+            } else {
+                httpStatus = HttpStatus.NOT_MODIFIED;
+            }
+        } catch (Exception ex) {
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<User>(user, httpStatus);
+    }
+    @RequestMapping(value = "/api/delete-user", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<User> deleteUser(@RequestBody User user) {
+        HttpStatus httpStatus = null;
+        try {
+            if (userService.deleteUser(user)) {
+                httpStatus = HttpStatus.OK;
+            } else {
+                httpStatus = HttpStatus.NOT_MODIFIED;
+            }
+        } catch (Exception ex) {
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<User>(user, httpStatus);
     }
 }

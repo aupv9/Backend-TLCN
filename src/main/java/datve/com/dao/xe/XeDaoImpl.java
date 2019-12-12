@@ -12,10 +12,12 @@ import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.*;
-
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 @Repository("xeDao")
 public class XeDaoImpl implements XeDao {
@@ -46,38 +48,55 @@ public class XeDaoImpl implements XeDao {
             xe.setHinhanh(doc.get("hinhanh").toString());
             xe.setNgaydi(doc.get("ngaydi").toString());
             xe.setChinhsachhuyve(doc.get("chinhsachhuyve").toString());
-            List<Ghe> listGhe = new ArrayList<Ghe>();
-            listGhe = (List<Ghe>) doc.get("danhsachghe");
+            ArrayList<Ghe> listGhe = new ArrayList<Ghe>();
+            listGhe = (ArrayList<Ghe>) doc.get("danhsachghe");
             xe.setDanhsachghe(listGhe);
-            List<LichTrinh> listLT = new ArrayList<LichTrinh>();
-            listLT = (List<LichTrinh>) doc.get("lichtrinh");
+            ArrayList<LichTrinh> listLT = new ArrayList<LichTrinh>();
+            listLT = (ArrayList<LichTrinh>) doc.get("lichtrinh");
             xe.setLichtrinh(listLT);
             list.add(xe);
+            xe.setDeleted(Boolean.parseBoolean(doc.get("deleted").toString()));
         }
         return list;
     }
 
     public boolean addXe(Xe xe) {
         try {
-            coll.insertOne(new Document("_id", xe.get_id())
-                    .append("loaixe", xe.getLoaixe())
-                    .append("nhaxe", xe.getNhaxe())
-                    .append("loaidi", xe.getLoaidi())
-                    .append("chuyendi", xe.getChuyendi())
-                    .append("danhgia", xe.getDanhgia())
-                    .append("hinhanh", xe.getHinhanh())
-                    .append("tinhdiqua", xe.getTinhdiqua())
-                    .append("giodi", xe.getGiodi())
-                    .append("ngaydi", xe.getNgaydi())
-                    .append("chinhsachhuyve", xe.getChinhsachhuyve())
-                    .append("lichtrinh", xe.getLichtrinh())
-                    .append("danhsachghe", xe.getDanhsachghe())
+           // coll.insertOne(new Document("_id",xe.get_id())
+//                                .append("loaixe",xe.getLoaixe())
+//                                .append("nhaxe",xe.getNhaxe())
+//                                .append("loaidi",xe.getLoaidi())
+//                                .append("chuyendi",xe.getChuyendi())
+//                                .append("danhgia",xe.getDanhgia())
+//                                .append("hinhanh",xe.getHinhanh())
+                               // .append("tinhdiqua",xe.getTinhdiqua())
+                               // .append("giodi",xe.getGiodi())
+                               // .append("ngaydi",xe.getNgaydi())
+                               // .append("chinhsachhuyve",xe.getChinhsachhuyve())
+                               // .append("lichtrinh",xe.getLichtrinh())
+                               // .append("danhsachghe",xe.getDanhsachghe())
+                              //  .append("deleted",false)
+                           // );
+            coll.insertOne(
+                    new Document("_id", xe.get_id())
+                            .append("loaixe",xe.getLoaixe())
+                                .append("nhaxe",xe.getNhaxe())
+                                .append("loaidi",xe.getLoaidi())
+                                .append("chuyendi",xe.getChuyendi())
+                                .append("danhgia",xe.getDanhgia())
+                                .append("hinhanh",xe.getHinhanh())
+                             .append("tinhdiqua",xe.getTinhdiqua())
+                             .append("giodi",xe.getGiodi())
+                             .append("ngaydi",xe.getNgaydi())
+                             .append("chinhsachhuyve",xe.getChinhsachhuyve())
+                             //.append("lichtrinh", xe.getLichtrinh())
+                            // .append("danhsachghe",xe.getDanhsachghe())
+                              .append("deleted",false)
             );
             return true;
         } catch (MongoException e) {
             System.out.println(e);
         }
-
         return false;
     }
 
@@ -95,6 +114,7 @@ public class XeDaoImpl implements XeDao {
                             .append("chinhsachhuyve", xe.getChinhsachhuyve())
                             .append("lichtrinh", xe.getLichtrinh())
                             .append("danhsachghe", xe.getDanhsachghe())
+                            .append("deleted",xe.isDeleted())
                     )
             );
             return true;
@@ -109,8 +129,7 @@ public class XeDaoImpl implements XeDao {
         /*
          * Tìm vé xe thông qua nơi đi qua và ngày đi
          * */
-        MongoCursor<Document> cursor = coll.find()
-                .iterator();
+        MongoCursor<Document> cursor = coll.find().iterator();
         List<Xe> list = new ArrayList<Xe>();
         /*
          * Set dữ liệu search được vào mảng xe
@@ -128,13 +147,14 @@ public class XeDaoImpl implements XeDao {
             xe.setHinhanh(doc.get("hinhanh").toString());
             xe.setNgaydi(doc.get("ngaydi").toString());
             xe.setChinhsachhuyve(doc.get("chinhsachhuyve").toString());
-            List<Ghe> listGhe = new ArrayList<Ghe>();
-            listGhe = (List<Ghe>) doc.get("danhsachghe");
+            ArrayList<Ghe> listGhe = new ArrayList<Ghe>();
+            listGhe = (ArrayList<Ghe>) doc.get("danhsachghe");
             xe.setDanhsachghe(listGhe);
-            List<LichTrinh> listLT = new ArrayList<LichTrinh>();
-            listLT = (List<LichTrinh>) doc.get("lichtrinh");
+            ArrayList<LichTrinh> listLT = new ArrayList<LichTrinh>();
+            listLT = (ArrayList<LichTrinh>) doc.get("lichtrinh");
             xe.setLichtrinh(listLT);
             list.add(xe);
+            xe.setDeleted(Boolean.parseBoolean(doc.get("deleted").toString()));
         }
         return list;
     }

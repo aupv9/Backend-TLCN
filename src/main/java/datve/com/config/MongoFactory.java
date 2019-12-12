@@ -1,14 +1,22 @@
 package datve.com.config;
 
 import com.mongodb.*;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.apache.log4j.Logger;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class MongoFactory {
+
+
+
     private static Logger log = Logger.getLogger(MongoFactory.class);
     private static final String HOST = "mongodb://root:batman2019@projecttlcn-shard-00-00-cycnq.mongodb.net:27017,projecttlcn-shard-00-01-cycnq.mongodb.net:27017,projecttlcn-shard-00-02-cycnq.mongodb.net:27017/test?ssl=true&replicaSet=ProjectTLCN-shard-0&authSource=admin&retryWrites=true&w=majority";
 
@@ -55,7 +63,11 @@ public class MongoFactory {
 
     // Fetches the collection from the mongo database.
     public static MongoCollection<?> getCollection(String db_name, String db_collection) {
-        return getDB(db_name).getCollection(db_collection);
+        // create codec registry for POJOs
+        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+
+        return getDB(db_name).withCodecRegistry(pojoCodecRegistry).getCollection(db_collection);
     }
 
     //đóng mongo client

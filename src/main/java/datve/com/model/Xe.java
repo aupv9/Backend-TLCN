@@ -1,7 +1,14 @@
 package datve.com.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import datve.com.model.LichTrinh;
+import datve.com.model.Ghe;
+
+//@JsonSubTypes({
+//        @JsonSubTypes.Type(value = LichTrinh.class, name = "lichtrinh")})
 public class Xe {
 
     private int _id;
@@ -9,16 +16,47 @@ public class Xe {
     private String nhaxe;
     private String giodi;
 
-    public int[] getTinhdiqua() {
+    public Xe(int _id, String loaixe, String nhaxe, String giodi, boolean deleted, String loaidi, String chuyendi, int danhgia, ArrayList<Integer> tinhdiqua, String hinhanh, String ngaydi, String chinhsachhuyve, ArrayList<LichTrinh> lichtrinh, ArrayList<Ghe> danhsachghe) {
+        this._id = _id;
+        this.loaixe = loaixe;
+        this.nhaxe = nhaxe;
+        this.giodi = giodi;
+        this.deleted = deleted;
+        this.loaidi = loaidi;
+        this.chuyendi = chuyendi;
+        this.danhgia = danhgia;
+        this.tinhdiqua = tinhdiqua;
+        this.hinhanh = hinhanh;
+        this.ngaydi = ngaydi;
+        this.chinhsachhuyve = chinhsachhuyve;
+        this.lichtrinh = lichtrinh;
+        this.danhsachghe = danhsachghe;
+    }
+
+    private boolean deleted;
+
+    public Xe() {
+
+    }
+
+    public ArrayList<Integer> getTinhdiqua() {
         return tinhdiqua;
     }
 
-    public void setTinhdiqua(int[] tinhdiqua) {
+    public void setTinhdiqua(ArrayList<Integer> tinhdiqua) {
         this.tinhdiqua = tinhdiqua;
     }
 
     public String getGiodi() {
         return giodi;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public void setGiodi(String giodi) {
@@ -28,7 +66,7 @@ public class Xe {
     private String loaidi;
     private String chuyendi;
     private int danhgia;
-    private int[] tinhdiqua;
+    private ArrayList<Integer> tinhdiqua;
 
     public int get_id() {
         return _id;
@@ -70,7 +108,7 @@ public class Xe {
         this.chuyendi = chuyendi;
     }
 
-    public float getDanhgia() {
+    public int getDanhgia() {
         return danhgia;
     }
 
@@ -102,27 +140,27 @@ public class Xe {
         this.chinhsachhuyve = chinhsachhuyve;
     }
 
-    public List<LichTrinh> getLichtrinh() {
+    public ArrayList<LichTrinh> getLichtrinh() {
         return lichtrinh;
     }
 
-    public void setLichtrinh(List<LichTrinh> lichtrinh) {
+    public void setLichtrinh(ArrayList<LichTrinh> lichtrinh) {
         this.lichtrinh = lichtrinh;
     }
 
-    public List<Ghe> getDanhsachghe() {
+    public ArrayList<Ghe> getDanhsachghe() {
         return danhsachghe;
     }
 
-    public void setDanhsachghe(List<Ghe> danhsachghe) {
+    public void setDanhsachghe(ArrayList<Ghe> danhsachghe) {
         this.danhsachghe = danhsachghe;
     }
 
     private String hinhanh;
     private String ngaydi;
     private String chinhsachhuyve;
-    private List<LichTrinh> lichtrinh;
-    private List<Ghe> danhsachghe;
+    private ArrayList<LichTrinh> lichtrinh;
+    private ArrayList<Ghe> danhsachghe;
 
 
 }

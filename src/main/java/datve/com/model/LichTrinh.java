@@ -2,14 +2,14 @@ package datve.com.model;
 
 public class LichTrinh {
 
-    private int thoigiandi;
+    private String thoigiandi;
     private String diemdi;
 
-    public int getThoigiandi() {
+    public String getThoigiandi() {
         return thoigiandi;
     }
 
-    public void setThoigiandi(int thoigiandi) {
+    public void setThoigiandi(String thoigiandi) {
         this.thoigiandi = thoigiandi;
     }
 
@@ -25,18 +25,25 @@ public class LichTrinh {
         return diachi;
     }
 
+    public LichTrinh(String thoigiandi, String diemdi, String diachi, int tinh) {
+        this.thoigiandi = thoigiandi;
+        this.diemdi = diemdi;
+        this.diachi = diachi;
+        this.tinh = tinh;
+    }
+
     public void setDiachi(String diachi) {
         this.diachi = diachi;
     }
 
-    public String getTinh() {
+    public int getTinh() {
         return tinh;
     }
 
-    public void setTinh(String tinh) {
+    public void setTinh(int tinh) {
         this.tinh = tinh;
     }
 
     private String diachi;
-    private String tinh;
+    private int tinh;
 }

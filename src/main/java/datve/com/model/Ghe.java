@@ -32,6 +32,13 @@ public class Ghe {
         return dat;
     }
 
+    public Ghe(int maGhe, int stt, int gia, boolean dat) {
+        this.maGhe = maGhe;
+        this.stt = stt;
+        this.gia = gia;
+        this.dat = dat;
+    }
+
     public void setDat(boolean dat) {
         this.dat = dat;
     }
